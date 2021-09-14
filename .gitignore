@@ -1,1 +1,3 @@
 assets/voice_files/voicesLuna.mp3
+db.sqlite3
+sentence_tokenizer.pickle
