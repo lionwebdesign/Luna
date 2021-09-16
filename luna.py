@@ -12,6 +12,8 @@ from pydub.playback import play
 import pyjokes
 # Others
 import datetime
+# Weather
+from weather_request.weather import CLIMA
 
 class LUNA:
     def __init__(self):
@@ -25,6 +27,7 @@ class LUNA:
         self.trainer = ListTrainer(self.bot)
         self.trainer.train(self.speech)
         self.microphone = sr.Recognizer()
+        self.clima = CLIMA()
         
     def UserMicrophoneIn(self):
         with sr.Microphone() as source:
@@ -54,15 +57,22 @@ class LUNA:
     def Time(self):
         strTime = datetime.datetime.now().strftime("%H:%M:%S")
         self.LunaVoice(strTime)
+        
+    def Clima(self):
+        self.clima_de_hoy = self.clima.get_clima("curitiba")
+        print(self.clima_de_hoy)
+        self.LunaVoice(self.clima_de_hoy)
 
     def Interaction(self):
         while True:
-            self.sentence = self.UserMicrophoneIn()#input("User: ")
+            self.sentence = input("User: ")#self.UserMicrophoneIn().low()
             if('cuentame algo gracioso' in self.sentence or 'dime una broma' in self.sentence or 'cuentame un chiste' in self.sentence):
                 self.Joke()
-            elif('que hora es' in self.sentence):
+            elif('me puedes dar la hora' in self.sentence or 'qué hora es' in self.sentence):
                 self.Time()
-            elif('hasta luego luna' in self.sentence or 'adios luna' in self.sentence or 'nos vemos luna' in self.sentence or 'buenas noches luna' in self.sentence):
+            elif ('como esta el clima' in self.sentence or 'como esta el tiempo' in self.sentence):
+                self.Clima()
+            elif('hastá luego luna' in self.sentence or 'adios luna' in self.sentence or 'nos vemos luna' in self.sentence or 'buenas noches luna' in self.sentence):
                 self.LunaVoice("De acuerdo, nos vemos más tarde")
                 break     
             else:
