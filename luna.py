@@ -60,7 +60,6 @@ class LUNA:
         
     def Clima(self):
         self.clima_de_hoy = self.clima.get_clima("curitiba")
-        print(self.clima_de_hoy)
         self.LunaVoice(self.clima_de_hoy)
 
     def Interaction(self):
