@@ -4,9 +4,10 @@ class CLIMA():
     def __init__(self):
         self.api_key = "f1e4695138a9aa78063b3515d1b84957"
     
-    def get_clima(self, city_name):
-        self.city = city_name
-        self.requests_base_url = (f"https://api.openweathermap.org/data/2.5/weather?q={self.city}&lang=sp&units=metric&appid={self.api_key}")
+    def get_clima(self, lat, lng):
+        self.latitude = lat
+        self.longitude = lng
+        self.requests_base_url = (f"https://api.openweathermap.org/data/2.5/weather?lat={self.latitude}&lon={self.longitude}&lang=sp&units=metric&appid={self.api_key}")
         self.response = requests.get(self.requests_base_url)
         self.x = self.response.json()
         if self.x["cod"] != "404":
@@ -19,5 +20,5 @@ class CLIMA():
             resultado = (f"La temperatura es de {str(self.current_temperature)}°C, presión Atmosferica de {str(self.current_pressure)} hPa, {str(self.current_humidity)}% de humedad, con {str(self.weather_description)}")
             return resultado
         else:
-            resultado = (f"Lo siento no encontre {self.city} en mi base de datos")   
+            resultado = (f"Lo siento no encontre información útil en mi base de datos")   
             return resultado

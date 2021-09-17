@@ -14,6 +14,8 @@ import pyjokes
 import datetime
 # Weather
 from weather_request.weather import CLIMA
+# Position
+from geolocation.current_position import CURRENT_GEOLOCATION
 
 class LUNA:
     def __init__(self):
@@ -28,6 +30,7 @@ class LUNA:
         self.trainer.train(self.speech)
         self.microphone = sr.Recognizer()
         self.clima = CLIMA()
+        self.geo = CURRENT_GEOLOCATION()
         
     def UserMicrophoneIn(self):
         with sr.Microphone() as source:
@@ -59,7 +62,9 @@ class LUNA:
         self.LunaVoice(strTime)
         
     def Clima(self):
-        self.clima_de_hoy = self.clima.get_clima("curitiba")
+        self.current_lat = self.geo.get_location()[0]
+        self.current_lng = self.geo.get_location()[1]
+        self.clima_de_hoy = self.clima.get_clima(self.current_lat, self.current_lng)
         self.LunaVoice(self.clima_de_hoy)
 
     def Interaction(self):
