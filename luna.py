@@ -15,7 +15,7 @@ import datetime
 # Weather
 from weather_request.weather import CLIMA
 # Position
-from current_geolocation.position import CURRENT_GEOLOCATION
+from geolocation.position import CURRENT_GEOLOCATION
 
 class LUNA:
     def __init__(self):
