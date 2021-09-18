@@ -1,11 +1,13 @@
 import requests
+from general.variables import GENERAL_VARIABLES
 
 class CURRENT_GEOLOCATION():
     def __init__(self):
+        self.variables = GENERAL_VARIABLES()
+        self.api_key = self.variables.geo_api
         self.data  = {
             "considerIp": "true"
         }
-        self.api_key = "AIzaSyA-C2U9OWidR-wfrXZl5OEXbosiVVFOhC0"
         
     def get_location(self):
         url = (f"https://www.googleapis.com/geolocation/v1/geolocate?key={self.api_key}")

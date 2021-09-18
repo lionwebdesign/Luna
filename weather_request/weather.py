@@ -1,8 +1,10 @@
 import requests, json
+from general.variables import GENERAL_VARIABLES
 
 class CLIMA():
     def __init__(self):
-        self.api_key = "f1e4695138a9aa78063b3515d1b84957"
+        self.variables = GENERAL_VARIABLES()
+        self.api_key = self.variables.weather_api
     
     def get_clima(self, lat, lng):
         self.latitude = lat
