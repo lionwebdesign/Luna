@@ -1,3 +1,4 @@
 assets/voice_files/voicesLuna.mp3
+general/variables.py
 db.sqlite3
 sentence_tokenizer.pickle
