@@ -29,7 +29,7 @@ class LUNA:
     def Clima(self):
         current_lat = self.geo.get_location()[0]
         current_lng = self.geo.get_location()[1]
-        clima_de_hoy = self.clima.get_clima(self.current_lat, self.current_lng)
+        clima_de_hoy = self.clima.get_clima(current_lat, current_lng)
         self.voice.LunaVoice(clima_de_hoy)
 
     def Interaction(self):
